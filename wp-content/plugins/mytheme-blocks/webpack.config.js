@@ -35,7 +35,10 @@ module.exports = (env, argv) => {
     plugins: [
       // new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
-        filename: "[editor].css",
+        chunkFilename: "[id].css",
+        filename: (chunkData) => {
+          return chunkData.chunk.name === "script" ? "style.css" : "[name].css";
+        },
       }),
     ],
     devtool: "source-map",

@@ -19,7 +19,9 @@ function mytheme_blocks_register_block_type($block, $options = array()) {
     array_merge(
         array(
             'editor_script' => 'mytheme-blocks-editor-script',
-            'editor_style' => 'mytheme-blocks-editor-style'
+            'editor_style' => 'mytheme-blocks-editor-style',
+            'script' => 'mytheme-blocks-script',
+            'style' => 'mytheme-blocks-style'
         ),
         $options
     ));
@@ -32,9 +34,18 @@ function mytheme_blocks_register() {
     array('wp-blocks', 'wp-i18n', 'wp-element')
 );
 
+wp_register_script('mytheme-blocks-script',
+    plugins_url('dist/script.js', __FILE__),
+    array()
+);
+
     wp_register_style('mytheme-blocks-editor-style',
     plugins_url('dist/editor.css', __FILE__), 
     array('wp-edit-blocks')); 
+
+    wp_register_style('mytheme-blocks-style',
+    plugins_url('dist/style.css', __FILE__), 
+    array()); 
 
 mytheme_blocks_register_block_type('firstblock');
 mytheme_blocks_register_block_type('secondblock');
